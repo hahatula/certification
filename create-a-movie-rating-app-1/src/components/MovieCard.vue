@@ -28,7 +28,8 @@ const setUserRating = (n) => {
                     Raiting: ({{ rating }}/5) 
                     <button 
                     v-for="n in 5" 
-                    :key="`star-${n}`" 
+                    :key="`star-${n}`"
+                    :disabled="userRating === n"
                     @click="setUserRating(n)"
                     >
                         <StarIcon  :class="`h-5 w-5 ${n <= userRating ? 'text-yellow-500' : 'text-gray-600'}`"/>
