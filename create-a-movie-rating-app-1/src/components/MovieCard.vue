@@ -1,9 +1,15 @@
 <script setup>
+import {ref, computed} from 'vue'
+import { StarIcon } from "@heroicons/vue/24/solid"
 const props = defineProps({
   movie: Object,
 })
 
 const {name, description, image, rating, genres, inTheaters} = props.movie;
+const userRating = ref(rating)
+const setUserRating = (n) => {
+    return userRating.value = n;
+}
 </script>
 
 <template>
@@ -18,8 +24,15 @@ const {name, description, image, rating, genres, inTheaters} = props.movie;
             </div>
             <div>
                 <span class="inline mr-2 bg-indigo-500 py-1 px-2 rounded-2xl text-white" v-for="g in genres" :key="g">{{ g }}</span>
-                <div class="mt-2">
-                    Raiting: ({{ rating }}/5) <span v-for="n in rating">⭐️</span>
+                <div class="mt-2 flex items-center gap-1">
+                    Raiting: ({{ rating }}/5) 
+                    <button 
+                    v-for="n in 5" 
+                    :key="`star-${n}`" 
+                    @click="setUserRating(n)"
+                    >
+                        <StarIcon  :class="`h-5 w-5 ${n <= userRating ? 'text-yellow-500' : 'text-gray-600'}`"/>
+                </button> 
                 </div>
             </div>
         </div>
