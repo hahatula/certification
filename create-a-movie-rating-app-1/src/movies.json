@@ -35,6 +35,18 @@
 				"Drama"
 			],
 			"inTheaters": false
+		},
+		{
+			"id": 4,
+			"name": "A Beautiful Mind",
+			"description": "A mathematical genius, John Nash made an astonishing discovery early in his career and stood on the brink of international acclaim. But soon he found himself on a harrowing journey of self-discovery.",
+			"image": "https://m.media-amazon.com/images/M/MV5BNzljZTk5ZDgtZTQ1Zi00NTM4LThlOGUtZDk2MGM4NDQ4NWQyXkEyXkFqcGc@._V1_.jpg",
+			"rating": "",
+			"genres": [
+				"Biography",
+				"Drama"
+			],
+			"inTheaters": false
 		}
 	]
 }
