@@ -173,7 +173,7 @@ function removeRatings() {
 </script>
 
 <template>
-  <div class="app">
+  <div class="app bg-gray-900">
     <div v-if="showMovieForm" class="modal-wrapper">
       <div class="modal-wrapper-inner">
         <form @submit.prevent="saveMovie">
