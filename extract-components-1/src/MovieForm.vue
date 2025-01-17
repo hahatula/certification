@@ -1,10 +1,8 @@
 <script setup>
-import { computed, reactive, ref } from "vue";
+import { reactive } from "vue";
 
 const { modelValue } = defineProps(['modelValue']);
 const emit = defineEmits(['update:modelValue', 'cancel'])
-
-console.log(modelValue)
 
 const genres = reactive([
   { text: "Drama", value: "Drama" },
@@ -101,7 +99,6 @@ const handleSubmit = () => {
 </script>
 
 <template>
-<div class="modal-wrapper-inner">
         <form @submit.prevent="handleSubmit">
           <div class="movie-form-input-wrapper">
             <label for="name">Name</label>
@@ -179,5 +176,4 @@ const handleSubmit = () => {
             </button>
           </div>
         </form>
-      </div>
 </template>

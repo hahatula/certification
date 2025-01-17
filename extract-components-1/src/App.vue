@@ -1,8 +1,10 @@
 <script setup>
-import { computed, reactive, ref } from "vue";
+import { computed, defineAsyncComponent, ref } from "vue";
 import { items } from "./movies.json";
 import MovieItem from '@/MovieItem.vue'
-import MovieForm from '@/MovieForm.vue'
+
+const AppModal = defineAsyncComponent(() => import('@/AppModal.vue'))
+const MovieForm = defineAsyncComponent(() => import('@/MovieForm.vue'))
 
 const movies = ref(items);
 const modelValue = ref();
@@ -79,14 +81,13 @@ function removeRatings() {
 
 <template>
   <div class="app bg-gray-900">
-    <div v-if="showMovieForm" class="modal-wrapper">
+    <AppModal v-if="showMovieForm" @close="hideForm">
       <MovieForm
         :modelValue="modelValue"
         @update:modelValue="saveMovie"
         @cancel="hideForm"
       />
-      
-    </div>
+    </AppModal>
     <div class="movie-actions-list-wrapper">
       <div class="movie-actions-list-info">
         <span>Total Movies: {{ totalMovies }}</span>
@@ -116,7 +117,7 @@ function removeRatings() {
     </div>
     <div class="movie-list">
       <MovieItem
-        v-for="(movie, movieIndex) in movies"
+        v-for="(movie) in movies"
         :key="movie.id"
         :movie="movie"
         @edit="editMovie"
