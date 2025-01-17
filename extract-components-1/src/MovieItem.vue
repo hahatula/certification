@@ -1,11 +1,12 @@
 <script setup>
 import { computed, reactive, ref } from "vue";
 import { StarIcon, TrashIcon, PencilIcon } from "@heroicons/vue/24/solid";
-const props = defineProps(['movie']);
+
+const { movie } = defineProps(['movie']);
 const emit = defineEmits(['edit', 'remove', 'update:rating'])
 
 const notRated = computed(() => {
-  return !props.movie.rating
+  return !movie.rating
 })
 </script>
 
