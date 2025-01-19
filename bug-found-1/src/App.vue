@@ -18,7 +18,7 @@ function updateRating(id, rating) {
   });
 }
 function removeMovie(id) {
-  movies.value.filter((movie) => movie.id !== id);
+  movies.value = movies.value.filter((movie) => movie.id !== id);
 }
 function editMovie(id) {
   currentMovie.value = movies.value.find((movie) => movie.id === id);
@@ -38,7 +38,7 @@ function updateMovie(data) {
       data.rating = m.rating;
       return data;
     }
-    return data;
+    return m;
   });
   hideForm();
 }
@@ -74,7 +74,7 @@ function removeRatings() {
 </script>
 
 <template>
-  <div class="app">
+  <div class="app bg-gray-900">
     <AppModal
       v-if="showMovieForm"
       :title="currentMovie?.id ? 'Edit Movie' : 'Add Movie'"
@@ -121,7 +121,7 @@ function removeRatings() {
         :movie="movie"
         @edit="editMovie"
         @remove="removeMovie"
-        v-bind:update:rating="updateRating"
+        @update:rating="updateRating"
       />
     </div>
   </div>
