@@ -75,18 +75,20 @@ function removeRatings() {
 
 <template>
   <div class="app bg-gray-900">
-    <AppModal
-      v-if="showMovieForm"
+    <!-- <Transition> -->
+      <AppModal
+      :show="showMovieForm"
       :title="currentMovie?.id ? 'Edit Movie' : 'Add Movie'"
       @close="hideForm()"
-    >
-      <MovieForm
+      >
+        <MovieForm
         v-if="showMovieForm"
         @update:modelValue="saveMovie"
         :modelValue="currentMovie"
         @cancel="hideForm"
-      />
+        />
     </AppModal>
+  <!-- </Transition> -->
     <div class="movie-actions-list-wrapper">
       <div class="movie-actions-list-info">
         <span>Total Movies: {{ totalMovies }}</span>
@@ -126,3 +128,30 @@ function removeRatings() {
     </div>
   </div>
 </template>
+
+<!-- <style>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+
+.v-enter-active .modal-wrapper-inner {
+  transition: all 0.3s ease-out;
+  transition-delay: 0.5s;
+}
+
+.v-leave-active .modal-wrapper-inner {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.v-enter-from .modal-wrapper-inner,
+.v-leave-to .modal-wrapper-inner {
+  transform: translateX(30px);
+  opacity: 0;
+}
+</style> -->
