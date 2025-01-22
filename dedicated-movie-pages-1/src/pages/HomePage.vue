@@ -76,7 +76,7 @@ function removeRatings() {
 </script>
 
 <template>
-  <div class="app">
+  <div class="app bg-gray-900">
     <AppModal
       :show="showMovieForm"
       :title="currentMovie?.id ? 'Edit Movie' : 'Add Movie'"

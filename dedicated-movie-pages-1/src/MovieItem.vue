@@ -9,6 +9,7 @@ import {
   EyeIcon,
 } from "@heroicons/vue/24/solid";
 import MovieStarRating from "./MovieStarRating.vue";
+import { RouterLink } from "vue-router";
 
 const props = defineProps({
   movie: { type: Object, default: null },
@@ -31,6 +32,7 @@ function editMovie() {
 </script>
 
 <template>
+  <RouterLink :to="`/${movie.id}`">
   <div class="movie-item group">
     <div class="movie-item-image-wrapper">
       <MovieStarRating :rating="movie.rating" />
@@ -73,7 +75,7 @@ function editMovie() {
               star <= movie.rating ? 'text-yellow-500' : 'text-gray-500',
             ]"
             :disabled="star === movie.rating"
-            @click="updateRating(star)"
+            @click.prevent="updateRating(star)"
           >
             <StarIcon class="movie-item-star-icon" />
           </button>
@@ -83,12 +85,12 @@ function editMovie() {
           class="items-center justify-end hidden space-x-2 group-hover:flex shrink-0"
         >
           <div class="movie-item-actions-list-wrapper">
-            <button class="movie-item-action-edit-button" @click="editMovie()">
+            <button class="movie-item-action-edit-button" @click.prevent="editMovie()">
               <PencilIcon class="w-4 h-4" />
             </button>
             <button
               class="movie-item-action-remove-button"
-              @click="removeMovie()"
+              @click.prevent="removeMovie()"
             >
               <TrashIcon class="w-4 h-4" />
             </button>
@@ -97,4 +99,5 @@ function editMovie() {
       </div>
     </div>
   </div>
+</RouterLink>
 </template>

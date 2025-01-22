@@ -1,13 +1,15 @@
 <script setup>
-import { ref, computed } from "vue";
+import { ref } from "vue";
 import { items } from "@/movies.json";
 import MovieStarRating from "@/MovieStarRating.vue";
+import { useRoute } from "vue-router";
 
-// Right now we're just displaying the info for the first movie
-// You should get the id from the URL and display the info for the proper movie
-// 💡 HINT: You do NOT need to modifiy the template
+const route = useRoute();
+const id = route.params.id
 
 const movie = ref(items[0]);
+movie.value = items.find((movie) => movie.id == id)
+
 </script>
 <template>
   <div
