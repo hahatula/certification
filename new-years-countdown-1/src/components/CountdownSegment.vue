@@ -1,16 +1,21 @@
 <script setup>
 defineProps({
   label: String,
+  number: Number,
 });
 </script>
+
 <template>
   <div class="segment">
     <div class="number-wrapper">
-      <span class="number">0</span>
+      <Transition appear>
+        <span :key="number" class="number">{{ number }}</span>
+      </Transition>
     </div>
     <span class="block pt-2 label">{{ label }}</span>
   </div>
 </template>
+
 <style scoped>
 .segment {
   @apply text-center w-[80px];
