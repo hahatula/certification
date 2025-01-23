@@ -1,12 +1,11 @@
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, onUnmounted } from "vue";
 import CountdownHeader from "@/components/CountdownHeader.vue";
 import CountdownSegment from "@/components/CountdownSegment.vue";
 
 const now = ref(new Date());
-onMounted(() => {
-  setInterval(() => (now.value = new Date()), 1000);
-});
+const timer = setInterval(() => (now.value = new Date()), 1000);
+onUnmounted(() => clearInterval(timer));
 
 const nextYear = computed(
   () => new Date(now.value.getFullYear() + 1, 0, 1, 0, 0, 0, 0),
