@@ -1,5 +1,10 @@
 <script setup>
 // Start here your app logic
+const vFocus = {
+  mounted: (el) => {
+    el.focus()
+  }
+}
 </script>
 <template>
   <div class="page">
