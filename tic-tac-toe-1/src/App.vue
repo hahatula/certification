@@ -43,7 +43,7 @@ const isWinner = computed(() => {
   }
   return null;
 });
-// ref(null);
+
 const isFinished = computed(() => {
   return isWinner.value || Object.values(values.value).every((v) => v !== null);
 });
@@ -66,21 +66,25 @@ const restart = () => {
 <template>
   <div class="flex flex-col gap-2 justify-center ml-auto mr-auto mt-60 w-60">
     <h1 class="text-center">Tic-tac-toe</h1>
-    <p class="text-center" :class="isWinner ? 'font-bold' : ''">
-      Player {{ player }}{{ `${isWinner ? " won!" : "'s turn"}` }}
+    <p v-if="isWinner || isFinished" class="text-center font-bold">
+      {{ `${isWinner ? `Player ${player} won!` : "No winner this time"}` }}
     </p>
+    <p v-else class="text-center">Player {{ player }}'s turn</p>
     <div class="tick-grid">
       <button
         v-for="n in 9"
         :key="n"
         class="w-10 h-10 border-2 border-green-900"
         @click="handleClick(n)"
-        :values="values"
       >
         {{ values[n] || "" }}
       </button>
     </div>
-    <button v-if="isFinished" class="border-2 border-green-900 p-1 inline" @click="restart">
+    <button
+      v-if="isFinished"
+      class="border-2 border-green-900 p-1 inline"
+      @click="restart"
+    >
       Start new game
     </button>
   </div>
