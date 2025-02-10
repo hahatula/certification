@@ -9,11 +9,10 @@ const props = defineProps({
     required: true,
   },
 });
-const user = ref(props.user);
-const userInputs = ref({...user.value})
+const user = ref({...props.user});
 
 const update = () => {
-  emit("update", { ...unref(userInputs) });
+  emit("update", { ...unref(user) });
 };
 </script>
 
@@ -31,7 +30,7 @@ const update = () => {
             <label for="first-name" class="label">First name</label>
             <div class="mt-2">
               <input
-                v-model="userInputs.firstName"
+                v-model="user.firstName"
                 type="text"
                 name="first-name"
                 id="first-name"
@@ -45,7 +44,7 @@ const update = () => {
             <label for="last-name" class="label">Last name</label>
             <div class="mt-2">
               <input
-                v-model="userInputs.lastName"
+                v-model="user.lastName"
                 type="text"
                 name="last-name"
                 id="last-name"
@@ -59,7 +58,7 @@ const update = () => {
             <label for="email" class="label">Email address</label>
             <div class="mt-2">
               <input
-                v-model="userInputs.email"
+                v-model="user.email"
                 id="email"
                 name="email"
                 type="email"
@@ -73,7 +72,7 @@ const update = () => {
             <label for="about" class="label">About</label>
             <div class="mt-2">
               <textarea
-                v-model="userInputs.about"
+                v-model="user.about"
                 id="about"
                 name="about"
                 rows="3"
