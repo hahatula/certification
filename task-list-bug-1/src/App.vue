@@ -1,18 +1,21 @@
 <script setup>
 import { XMarkIcon } from "@heroicons/vue/24/solid";
-import { reactive } from "vue";
+import { ref } from "vue";
 
-let tasks = reactive([
+const tasks = ref([
   { id: 1, name: "Task 1" },
   { id: 2, name: "Task 2" },
   { id: 3, name: "Task 3" },
 ]);
+
+const lastId = ref(tasks.value.length);
 const addTask = () => {
-  const newTask = { id: Math.random(), name: `Task ${tasks.value.length + 1}` };
+  const newTask = { id: Math.random(), name: `Task ${lastId.value + 1}` };
   tasks.value.push(newTask);
+  lastId.value++;
 };
 const removeTask = (id) => {
-  tasks = tasks.value.filter((task) => task.id !== id);
+  tasks.value = tasks.value.filter((task) => task.id !== id);
 };
 </script>
 <template>
